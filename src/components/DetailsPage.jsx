@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Flex, Image, Text, Button } from '@chakra-ui/react'
 import Header from './Header';
 import {ArrowBackIcon} from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
 
 
+
 const DetailsPage = () => {
     const navigate = useNavigate()
 
     let countryData = JSON.parse(localStorage.getItem('country'))
-    console.log(countryData);
-
+    // console.log(countryData);
     const goBack = () => {
         navigate('/')
     }
-
   return (
     <div>
         <Header/>
@@ -66,16 +65,21 @@ const DetailsPage = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box w='90%' m='auto' p={4} height='15%' marginTop='2%' display='flex' gap={10} justifyContent='center' alignItems='center'>
 
+                     <Box w='90%' m='auto' p={4} height='15%' marginTop='2%' display='flex' gap={10} justifyContent='center' alignItems='center'>
+
+
+
+              
                     <Text fontSize='lg'>Border Countries :</Text>
-                        {countryData.borders.map((bor) => {
+                        {countryData.borders.map((bor, id) => {
                             return(
-                            
-                                <Button colorScheme='blue' variant='outline'>{bor}</Button>
+                                <Button key={id} colorScheme='blue' variant='outline'>{bor}</Button>
                             
                             )
                         })}
+                
+                        
                 </Box>
             </Box>
         </Box>
