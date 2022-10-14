@@ -11,7 +11,9 @@ const Flag = ({props}) => {
     capital : props.capital
   }
   return (
-      <Box w='100%' p={4} borderWidth='1px' borderRadius='lg'>
+    <div id='single-flag'>
+
+    <Box w='100%' p={4} borderWidth='1px' borderRadius='lg'>
           <Image src={obj.imgUrl} alt={obj.name} h={200}/>
         <Box w='100%' p={4} borderRadius='lg'>
           <Text as='b' fontSize='2xl'>{obj.name}</Text>
@@ -29,6 +31,8 @@ const Flag = ({props}) => {
             <Text fontSize='lg'>{obj.capital}</Text>
         </Box>
     </Box>  
+    </div>
+
   )
 }
 

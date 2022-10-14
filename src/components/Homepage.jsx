@@ -9,17 +9,22 @@ import { SearchIcon} from '@chakra-ui/icons'
 
 import { Select } from '@chakra-ui/react'
 import './styles/Homepage.css'
+import Loader from './Loader'
 
 
 const Homepage = () => {
 
     const [countries, setCountries] = useState([])
+    const [secondCountries, setSecondCountries] = useState([])
     const [countriesList, setCountriesList] = useState([])
+    const [status, setStatus] = useState(false)
 
     useEffect(()=>{
         axios.get(`https://restcountries.com/v2/all`).then((res)=>{
             // console.log(res.data)
             setCountries(res.data)
+            setSecondCountries(res.data)
+            setStatus(true)
             let obj = {}
               res.data.forEach((country) => {
                   if(!obj[country.region]){
@@ -32,34 +37,75 @@ const Homepage = () => {
             })
     },[])
 
-    // console.log(countriesList)
+    const handleChange = (e) => {
+      // console.log(e.target.value)
+      let {value} = e.target
+
+       const newCountries = countries.filter((country) => {
+            let countryName = country.name.toLowerCase()
+            
+            if(countryName.includes(value.toLowerCase())){
+              return country
+            }
+        })
+
+        // console.log(newCountries);
+        setSecondCountries([...newCountries])
+
+
+
+    }
+
+    const selectChange = (e) => {
+      
+        console.log(e.target.value)
+        let {value} = e.target
+
+        const newCountries = countries.filter((country) => {
+          let regionName = country.region
+          
+          if(regionName.includes(value)){
+            return country
+          }
+      })
+
+      console.log(newCountries);
+      setSecondCountries([...newCountries])
+
+
+    }
+
+
   return (
-    <div id='main-container'>
+    <>
+    
+    {status? <div id='main-container'>
       <div className='top-container'>
           <div>
-              <Input w='60%' h='50%' ml="20%" borderRadius="10px" size='lg' fontSize='1.4em' p={5} placeholder="Search Countries"/>
+              <Input w='60%' h='50%' ml="20%" borderRadius="10px" size='lg' fontSize='1.4em' p={5} placeholder="Search Countries" onChange={(e)=>handleChange(e)}/>
           </div>
            <div>
-              <Select placeholder='Select option'>
+              <Select placeholder='Select option' onChange={(e)=>selectChange(e)}>
                   {countriesList.map((name, id) => {
                     return(
 
-                      <option key={id} value={name}>{name}</option>
+                      <option key={id} value={name} >{name}</option>
                     )
                   })}
               </Select>
            </div>
       </div>
       <div className='all-country-container'>
-                {countries.map((country) => {
+                {secondCountries.map((country, id) => {
                   return(
-                    <Flag props={country}/>
+                    <Flag key={id} props={country}/>
                   )
                 })}
 
       </div>
       
-    </div>
+    </div> : <Loader />}
+    </>
   )
 }
 
