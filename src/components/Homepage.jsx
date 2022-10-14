@@ -5,11 +5,12 @@ import Flag from './Flag'
 import {
   Input,
 } from "@chakra-ui/input"
-import { SearchIcon} from '@chakra-ui/icons'
 
 import { Select } from '@chakra-ui/react'
 import './styles/Homepage.css'
 import Loader from './Loader'
+import { useNavigate } from 'react-router-dom'
+import Header from './Header'
 
 
 const Homepage = () => {
@@ -18,6 +19,8 @@ const Homepage = () => {
     const [secondCountries, setSecondCountries] = useState([])
     const [countriesList, setCountriesList] = useState([])
     const [status, setStatus] = useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         axios.get(`https://restcountries.com/v2/all`).then((res)=>{
@@ -49,7 +52,6 @@ const Homepage = () => {
             }
         })
 
-        // console.log(newCountries);
         setSecondCountries([...newCountries])
 
 
@@ -75,11 +77,19 @@ const Homepage = () => {
 
     }
 
+    const handleClick = (country) => {
+      // console.log(country)
+      
+      localStorage.setItem('country',JSON.stringify(country))
+      navigate('/detailsPage')
+
+    }
 
   return (
     <>
     
     {status? <div id='main-container'>
+      <Header />
       <div className='top-container'>
           <div>
               <Input w='60%' h='50%' ml="20%" borderRadius="10px" size='lg' fontSize='1.4em' p={5} placeholder="Search Countries" onChange={(e)=>handleChange(e)}/>
@@ -98,7 +108,9 @@ const Homepage = () => {
       <div className='all-country-container'>
                 {secondCountries.map((country, id) => {
                   return(
-                    <Flag key={id} props={country}/>
+                    <div key={id} onClick={()=>handleClick(country)}>
+                      <Flag  props={country} />
+                    </div>
                   )
                 })}
 

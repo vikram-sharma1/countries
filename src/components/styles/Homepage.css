@@ -5,15 +5,36 @@
 .top-container{
     /* border: 1px solid black; */
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
     height: 100px;
 }
 .top-container div{
     flex: 1;
     width: 50%;
     margin: auto;
-    /* border: 1px solid black; */
+}
+.night-mode{
+    display: flex;
+        align-items: center;
+    justify-content: center;
+    height: 100px;
+    padding: 0px 100px;
+}
+.night-mode div{
+    flex: 1;
+    /* text-align: center; */
+}
+
+.where{
+    font-size: 50px;
+    font-weight: 500;
+}
+.night{
+    font-size: 30px;
+    text-align: right;
+}
+
+.where:hover, .night:hover{
+    cursor: pointer;
 }
 
 
