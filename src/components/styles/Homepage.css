@@ -1,0 +1,27 @@
+#main-container{
+    /* border: 2px solid red; */
+    padding: 15px;
+}
+.top-container{
+    /* border: 1px solid black; */
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    height: 100px;
+}
+.top-container div{
+    flex: 1;
+    width: 50%;
+    margin: auto;
+    /* border: 1px solid black; */
+}
+
+
+.all-country-container{
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(4, 20%);
+    justify-content: center;
+    row-gap: 10px;
+    column-gap: 3%;
+}
