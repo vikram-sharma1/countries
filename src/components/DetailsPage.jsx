@@ -3,13 +3,10 @@ import { Box, Flex, Image, Text, Button } from '@chakra-ui/react'
 import Header from './Header';
 import {ArrowBackIcon} from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
-import { useBoolean } from '@chakra-ui/react'
-import { ErrorBoundary } from './ErrorBoundary';
 
 
 const DetailsPage = () => {
     const navigate = useNavigate()
-    // const [flag, setFlag] = useState(true)
     let flag; 
 
     let countryData = JSON.parse(localStorage.getItem('country'))
@@ -81,7 +78,6 @@ const DetailsPage = () => {
 
                      <Box w='90%' m='auto' p={4} height='15%' marginTop='2%' display='flex' gap={10} justifyContent='center' alignItems='center'>
 
-                {/* <ErrorBoundary> */}
 
                     {flag == undefined ? <>
                         <Text fontSize='lg'>Border Countries :</Text>
@@ -96,7 +92,6 @@ const DetailsPage = () => {
                     
                 
                         
-                {/* </ErrorBoundary> */}
                     </Box>
             </Box>
         </Box>
