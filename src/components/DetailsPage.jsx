@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Flex, Image, Text, Button } from '@chakra-ui/react'
+import { Box, Flex, Image, Text, Button, useColorModeValue } from '@chakra-ui/react'
 import Header from './Header';
 import {ArrowBackIcon} from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
@@ -7,18 +7,16 @@ import { useNavigate } from 'react-router-dom';
 
 const DetailsPage = () => {
     const navigate = useNavigate()
+    const btnBgColor = useColorModeValue("gray.50", 'whiteAlpha.50' )
     let flag; 
 
     let countryData = JSON.parse(localStorage.getItem('country'))
    
 
         if(!countryData.borders){
-            // throw new Error('No borders found')
-            // setFlag(false)
             flag = false
         }
    
-        console.log(flag)
 
 
     const goBack = () => {
@@ -29,7 +27,7 @@ const DetailsPage = () => {
         <Header/>
         <Box w='90%' m='auto' p={4} borderWidth='5px' borderRadius='lg' h='800px' display="flex" gap='10px'>
             <Box flex={1} p={4} borderRadius='lg'>
-            <Button rightIcon={<ArrowBackIcon />} colorScheme='blue' variant='outline' onClick={goBack}>
+            <Button leftIcon={<ArrowBackIcon />}  colorScheme='blue' variant='outline' onClick={goBack}>
                 Back
             </Button>
             <Image src={countryData.flags.png} alt={countryData.name} w='100%' marginTop='150px'/>

@@ -15,14 +15,11 @@
 .night-mode{
     display: flex;
         align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100px;
     padding: 0px 100px;
 }
-.night-mode div{
-    flex: 1;
-    /* text-align: center; */
-}
+
 
 .where{
     font-size: 50px;
@@ -31,6 +28,7 @@
 .night{
     font-size: 30px;
     text-align: right;
+    width: 13%;
 }
 
 .where:hover, .night:hover{
